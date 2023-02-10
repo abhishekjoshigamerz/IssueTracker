@@ -1,1 +1,43 @@
-Form
+<div class="col-auto col-md-9 col-xl-10 bg-white d-md-block">
+    <div class="md-block">
+        <form method="POST" action="/labels/create-label">
+            <div class="mb-3 mt-5">
+                <h3>Create Labels</h3>
+            <label for="projectTitle" class="form-label">Create Label</label>
+            <input type="text" class="form-control" id="name" name="name" aria-describedby="Add project title">
+            <div id="createLabel" class="form-text">Add Labels </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Add Project</button>
+        </form>
+    </div>
+    <div class="md-block">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Label Name</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% let i = 1; %>
+                <% for( label of labels ) { %>
+                    <tr>
+                        <th scope="row"><%= i %></th>
+                        <td><%= label.name %></td>
+                        <td><a href="/labels/delete-label/<%= label._id %>" class="btn btn-danger">Delete</a></td>
+                        <% i++ %>
+                    </tr>
+                <% } %>
+            </tbody>
+            </table>
+    </div>
+</div>
+
+    
+     
+
+
+          
+    

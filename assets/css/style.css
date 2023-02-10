@@ -1,0 +1,5 @@
+#suggestion li:hover{
+    background-color: blue;
+    cursor: pointer;
+    color:white;
+}

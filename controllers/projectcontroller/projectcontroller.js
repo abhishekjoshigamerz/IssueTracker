@@ -1,5 +1,6 @@
 const Project = require('../../models/project/project');
 const Issue = require('../../models/issue/issue');
+const Label = require('../../models/label/label');
 module.exports.addproject = function(req,res){
     return res.render('projectform',{
         title: "Add Project"
@@ -8,12 +9,14 @@ module.exports.addproject = function(req,res){
 
 
 module.exports.viewproject = async function(req,res){
-    let project     = await Project.findById(req.params.id);
-    let issues      = await Issue.find({project_id:req.params.id}).sort('-createdAt');
+    let project = await Project.findById(req.params.id);
+    let issues  = await Issue.find({project_id:req.params.id}).sort('-createdAt');
+    let labels = await Label.find({}).sort('-createdAt');
     return res.render('viewprojectDetails',{
         title: "View Project",
         'project':project,
-        'issues':issues
+        'issues':issues,
+        "labels":labels
     });
 }
 

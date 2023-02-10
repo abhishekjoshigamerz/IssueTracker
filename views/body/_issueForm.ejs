@@ -1,5 +1,5 @@
 <div class="col-auto col-md-9 col-xl-10 bg-white d-md-block">
-    <h3 class="mt-5 mb-3">Project Name here </h3>
+    <h3 class="mt-5 mb-3"><%= project.name %> </h3>
         <p class="mb-2">Add project issues here</p>
         <form method="POST" action="/issue/create-issue/">
             <div class="mb-3 mt-5">
@@ -7,18 +7,28 @@
               <input type="text" class="form-control" name="name" id="issueTitle" aria-describedby="Add Issue title">
               <div id="issueTitle" class="form-text">Add Issue title</div>
             </div>
-            
             <input type="hidden" name="projectID" value="<%= project._id %>">
+            <div id="hiddenDiv">
+              
+            </div> 
             <div class="mb-3">
               <label for="issueDescription" class="form-label">Issue Description</label>
-              <!-- <input type="text" class="form-control" id="issueDescription"> -->
+              
                 <textarea class="form-control" name="description" id="issueDescription" rows="7"></textarea>
             </div>
-            <div class="mb-3 mt-5">
-                <label for="issueLabel" class="form-label">Issue Label</label>
+            <p id="showSelectedLabels">Selected Labels are : </p>
+            <div class="input-group  mb-3 mt-5 suggestionSet">
+              
+                <label for="issueLabel" class="form-label">Issue Label : &nbsp;</label>
                 <input type="text" name="issueLabel" class="form-control" id="issueLabel" aria-describedby="Add issue label name">
-                <div id="issueLabel" class="form-text">Add project issue Label</div>
-              </div>
+                <button class="btn btn-outline-secondary" type="button" id="buttonAddLabel">Add Label</button>
+                
+            </div>
+            <div class="suggestion-result ">
+              <ul  id="suggestion" class="list-group">
+              </ul>
+            </div>
+            <div id="issueLabel" class="form-text">Add project issue Label</div>
             <div class="mb-3 mt-5">
                 <label for="issueAuthor" class="form-label">Issue author</label>
                 <input type="text"  name="authorName" class="form-control" id="issueAuthor" aria-describedby="Add issue author name">
@@ -27,3 +37,5 @@
             <button type="submit" class="btn btn-primary">Add Issue</button>
           </form>
 </div>
+<!-- /js/labelSuggestion.js -->
+<script src="/js/suggestion.js"></script>
