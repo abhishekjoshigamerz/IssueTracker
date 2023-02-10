@@ -1,0 +1,23 @@
+       
+       
+ <div class="col-auto col-md-9 col-xl-10 bg-white d-md-block">
+    <form method="POST" action="/project/create-project">
+        <div class="mb-3 mt-5">
+            <h3>Add Project</h3>
+          <label for="projectTitle" class="form-label">Project title</label>
+          <input type="text" class="form-control" id="name" name="name" aria-describedby="Add project title">
+          <div id="emailHelp" class="form-text">Add project title</div>
+        </div>
+        <div class="mb-3">
+          <label for="projectDescription" class="form-label">Project Description</label>
+          <!-- <input type="text" class="form-control" id="projectDescription"> -->
+            <textarea class="form-control" name="description" id="projectDescription" rows="7"></textarea>
+        </div>
+        <div class="mb-3 mt-5">
+            <label for="projectAuthor" class="form-label">Project Author</label>
+            <input type="text" class="form-control" name="authorName" id="projectAuthor" aria-describedby="Add project author">
+            <div id="projectAuthor" class="form-text">Add project Authors Name</div>
+          </div>
+        <button type="submit" class="btn btn-primary">Add Project</button>
+      </form>
+</div>

@@ -1,0 +1,34 @@
+<div class="col-md-9">
+    <div class="row">
+         <div class="col-md-12">
+             <h2 class="float-start d-md-inline"><%= project.name %></h2>
+             <a href="/issue/add-issue/<%= project._id %>" class="float-end d-md-inline btn btn-primary">Add Issues</a>
+         </div>
+         <div class="col-md-12">
+             <p><small class="float-left d-md-block"><%= project.authorName %></small></p>
+             <p class="float-left"><%= project.description %></p>
+                 <div id="project-issues">
+                     <h3>Project Issues</h3>
+                       
+                        <% for(issue of issues){ %>
+                         <div class="accordion" id="accordionExample">
+                         <div class="accordion-item">
+                         <h2 class="accordion-header" id="headingOne">
+                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                             <%= issue.name %>  &nbsp;<small class="float-end">Author: <%= issue.authorName %></small>
+                             </button>
+                         </h2>
+                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                             <div class="accordion-body">
+                             <strong><%= issue.description %>
+                             </div>
+                         </div>
+                         </div>
+                        
+                         </div>
+                         <% } %>
+                        
+                 </div> 
+         </div>
+    </div> 
+ </div>

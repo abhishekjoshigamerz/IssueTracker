@@ -1,0 +1,26 @@
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <% for(project of projects){%>
+     <% console.log(project); %>
+    <div class="col">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white"> <%= project.name %> </div>
+        
+
+        <div class="card-body">
+          <p class="card-text"><%= project.description %></p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <a href="/project/view-project/<%=project._id%>" class="btn btn-sm btn-outline-secondary">View Project</a>
+              <a href="/issue/add-issue/<%=project._id%>" class="btn btn-sm btn-outline-secondary">Add Issues</a>
+            </div>
+            <small class="text-muted">9 mins</small>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="float-start"><%= project.authorName %></div>
+          <div class="float-end"><%= project.issue.length %></div>
+        </div>
+      </div>
+    </div>
+   <% } %>
+</div>

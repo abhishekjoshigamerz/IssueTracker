@@ -1,0 +1,29 @@
+<div class="col-auto col-md-9 col-xl-10 bg-white d-md-block">
+    <h3 class="mt-5 mb-3">Project Name here </h3>
+        <p class="mb-2">Add project issues here</p>
+        <form method="POST" action="/issue/create-issue/">
+            <div class="mb-3 mt-5">
+              <label for="issueTitle" class="form-label">Add Issue Title</label>
+              <input type="text" class="form-control" name="name" id="issueTitle" aria-describedby="Add Issue title">
+              <div id="issueTitle" class="form-text">Add Issue title</div>
+            </div>
+            
+            <input type="hidden" name="projectID" value="<%= project._id %>">
+            <div class="mb-3">
+              <label for="issueDescription" class="form-label">Issue Description</label>
+              <!-- <input type="text" class="form-control" id="issueDescription"> -->
+                <textarea class="form-control" name="description" id="issueDescription" rows="7"></textarea>
+            </div>
+            <div class="mb-3 mt-5">
+                <label for="issueLabel" class="form-label">Issue Label</label>
+                <input type="text" name="issueLabel" class="form-control" id="issueLabel" aria-describedby="Add issue label name">
+                <div id="issueLabel" class="form-text">Add project issue Label</div>
+              </div>
+            <div class="mb-3 mt-5">
+                <label for="issueAuthor" class="form-label">Issue author</label>
+                <input type="text"  name="authorName" class="form-control" id="issueAuthor" aria-describedby="Add issue author name">
+                <div id="issueAuthor" class="form-text">Add project issue authors Name</div>
+              </div>
+            <button type="submit" class="btn btn-primary">Add Issue</button>
+          </form>
+</div>
