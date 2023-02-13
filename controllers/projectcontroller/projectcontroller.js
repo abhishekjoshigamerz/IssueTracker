@@ -12,6 +12,19 @@ module.exports.viewproject = async function(req,res){
     let project = await Project.findById(req.params.id);
     let issues  = await Issue.find({project_id:req.params.id}).sort('-createdAt');
     let labels = await Label.find({}).sort('-createdAt');
+   
+    if(req.xhr){
+        return res.status(200).json({
+            data:{
+                'project':project,
+                'issues':issues,    
+                "labels":labels
+            },
+            message: "Project and Issues fetched"
+        });
+    }
+
+    
     return res.render('viewprojectDetails',{
         title: "View Project",
         'project':project,

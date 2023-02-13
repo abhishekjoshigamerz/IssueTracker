@@ -5,6 +5,10 @@ const labelSchema = new mongoose.Schema({
         required:true,
         unique:true
     },
+    issues:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Issue'
+    }],
     createdAt:{
         type:Date,
         default:Date.now,
@@ -12,5 +16,5 @@ const labelSchema = new mongoose.Schema({
     }
 });
 
-const label = mongoose.model('label',labelSchema);
+const label = mongoose.model('Label',labelSchema);
 module.exports = label;
