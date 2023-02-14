@@ -97,9 +97,9 @@ $(document).ready(function() {
 
     function pickFromSuggestedList(){
         let value = $('.suggestedResultLinks').attr('data-value');
-            let name = $('.suggestedResultLinks').attr('data-id');
-            $('#suggestion').empty();
-            alert(value + ' ' + name);
+        let name = $('.suggestedResultLinks').attr('data-id');
+        $('#suggestion').empty();
+           
             
             if(!valuePair.hasOwnProperty(value)){
                 

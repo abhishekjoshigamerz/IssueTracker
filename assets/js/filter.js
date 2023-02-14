@@ -1,21 +1,21 @@
 $(document).ready(function() {
     
-    
+    let value = $('.checkLabel').attr('data-value');
     // filere by author name 
     $('#authorName').keyup(function(event){
         
         let name = $('#authorName').val();
-        
 
         $.ajax({
             type: "POST",
             url: "/issue/filter-by-author",
             data: {
-                name: name
+                name: name,
+                projectID: value
             },
             success: function (response) {
                 console.log(response);
-                
+                $('#project-issues').html('No content found');
                 let result = response.data;
                 let html  = ``;
                 if(result.length > 0){
@@ -30,7 +30,7 @@ $(document).ready(function() {
                         ${result[i].name}  &nbsp;<small class="float-end">Author: ${result[i].authorName}</small>
                         </button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                         <strong>${result[i].description}</strong>
                         </div>
@@ -55,6 +55,7 @@ $(document).ready(function() {
     //filter by author name code ends here
     //array for storing value of labels and then send it to server
     let labels = [];
+
     $("input[type='checkbox']").click(function(){
         if($(this).is(":checked")){
             labels.push($(this).val());
@@ -74,7 +75,8 @@ $(document).ready(function() {
             type: "POST",
             url: "/issue/filter-by-labels",
             data: {
-                labels: labels
+                labels: labels,
+                projectID: value
             },
             success: function (response) {
                 
@@ -89,7 +91,7 @@ $(document).ready(function() {
                             ${result[i].name}  &nbsp;<small class="float-end">Author: ${result[i].authorName}</small>
                             </button>
                         </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                             <strong>${result[i].description}</strong>
                             </div>
@@ -131,7 +133,8 @@ $(document).ready(function() {
             url: "/issue/filter-by-title-and-description",
             data: {
                 title: title,
-                description: description
+                description: description,
+                projectID: value
             },
             success: function (response) {
                 
@@ -146,11 +149,11 @@ $(document).ready(function() {
                     <div class="accordion" id="accordionExample">
                     <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne-${result[i]._id}" aria-expanded="true" aria-controls="collapseOne">
                         ${result[i].name}  &nbsp;<small class="float-end">Author: ${result[i].authorName}</small>
                         </button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div id="collapseOne-${result[i]._id}" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                         <strong>${result[i].description}</strong>
                         </div>
@@ -195,11 +198,11 @@ $(document).ready(function() {
                     <div class="accordion" id="accordionExample">
                     <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne-${result[i]._id}" aria-expanded="true" aria-controls="collapseOne">
                         ${result[i].name}  &nbsp;<small class="float-end">Author: ${result[i].authorName}</small>
                         </button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div id="collapseOne-${result[i]._id}" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                         <strong>${result[i].description}</strong>
                         </div>

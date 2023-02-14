@@ -14,7 +14,7 @@ const issueSchema = new mongoose.Schema({
     },
     project_id:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'Project'
+        ref:'Project' 
     },
     labels:[{
         type:mongoose.Schema.Types.ObjectId,
