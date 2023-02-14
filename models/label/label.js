@@ -5,10 +5,6 @@ const labelSchema = new mongoose.Schema({
         required:true,
         unique:true
     },
-    issues:[{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Issue'
-    }],
     createdAt:{
         type:Date,
         default:Date.now,

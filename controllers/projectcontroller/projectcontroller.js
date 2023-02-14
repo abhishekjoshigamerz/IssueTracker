@@ -3,6 +3,7 @@ const Issue = require('../../models/issue/issue');
 const Label = require('../../models/label/label');
 const { faker } = require('@faker-js/faker');
 module.exports.addproject = function(req,res){
+    
     return res.render('projectform',{
         title: "Add Project"
     });
@@ -10,6 +11,7 @@ module.exports.addproject = function(req,res){
 
 
 module.exports.viewproject = async function(req,res){
+    
     let project = await Project.findById(req.params.id);
     let issues  = await Issue.find({project_id:req.params.id}).sort('-createdAt');
     let labels = await Label.find({}).sort('-createdAt');
@@ -34,41 +36,15 @@ module.exports.viewproject = async function(req,res){
     });
 }
 
-module.exports.addFakeData = async function(req,res){
-    var product = await new Project();
 
-    product.name = req.body.name
-    product.description = req.body.description
-    product.authorName = req.body.authorName
-    
-
-    await product.save(function(err) {
-        if (err) throw err
-        res.redirect('/project/add-fake-data');
-    });
-
-   
-}
 
 //to be removed
-module.exports.generateFakeData = async function(req,res){
-    for (let i = 0; i < 90; i++) {
-        let project = new Project();
-        project.name = faker.name.fullName();
-        project.description = faker.lorem.sentence();
-        project.authorName = faker.name.firstName();
-        project.save(function(err) {
-            if (err) throw err
-            
-        });
-        res.redirect('/project/addFakeData');
-    }
 
-}
 
 //get all projects 
 
 module.exports.getAllProjects = async function(req,res){
+    
         let perPage = 12;
         let page = req.params.page || 1;
 
@@ -98,10 +74,9 @@ module.exports.createproject =  async function(req,res){
         }
         let post = await Project.create(data);   
         post.save();
-    
-        
-        return res.redirect('/');     
+        return res.redirect('/project/get-all-projects/1');     
     } catch (error) {
+        req.flash('error',error);
         console.log(`Error: ${error}`);
     }
    

@@ -75,7 +75,7 @@ module.exports.createissue = async function(req,res){
     try{
         //1. find the labels
         let labels  = req.body.labels;
-        console.log('Line 71 '+labels);
+       
         let newlabes = [];
         //2. find the project
         const project  = await Project.findById(req.body.projectID);
@@ -116,6 +116,7 @@ module.exports.createissue = async function(req,res){
             console.log(`LATEST NEW labs are ${newlabes}`);
             await project.issue.push(issues);
             await project.save();
+            
             res.redirect('/');
 
         }
@@ -123,84 +124,11 @@ module.exports.createissue = async function(req,res){
     
 
     }catch(error){
-        console.log(error);
-    }
-    // try {
-    //     //1. find the labels
-    //     let labels  = req.body.labels;
-    //     console.log(labels);
-
-    //     // let labels = req.body.labels;
-    //     // console.log(typeof labels);
-    //     // const newLabels = Object.values(labels).filter(val => !ObjectId.isValid(val));
-    //     // const oldLabels = Object.values(labels).filter(val => ObjectId.isValid(val));
-    //     // let allLabelsWithId = [];    
-    //     // if(oldLabels.length>0){
-    //     //     allLabelsWithId.concat(oldLabels); 
-    //     // }
-    //     // console.log('Line 77' + allLabelsWithId);
-    //     // //newLabels 
-
-
-
-    //     // // const newLabels = prepareArray(labels);
-    //     // if(newLabels.length > 0){
-    //     //     const objectArray = newLabels.map(val => ({ name: val }));
-
-    //     //     await Label.insertMany(objectArray, function(err, docs) {
-    //     //         if (err){
-    //     //             return console.error(err);
-    //     //         }
-    //     //         else{
-    //     //             console.log("Multiple documents inserted to Collection");
-    //     //             console.log(docs._id);
-    //     //             let ids = docs.map(doc => doc._id);
-    //     //             console.log('IDS are', ids);
-    //     //             allLabelsWithId.concat(ids);
-    //     //             console.log(` Labels is are  ${allLabelsWithId}`);
-                   
-    //     //         }
-    //     //     });       
-    //     // } 
-
-     
-    //     // const project = await Project.findById(req.body.projectID);
-    //     // if(project){
-    //     //     let arra = ['63e9951ded54221a516fc622','63e8e6e8b8a285d68b1fbd0c'];
-    //     //     let issue = {
-    //     //         name:req.body.name,
-    //     //         description:req.body.description,
-    //     //         authorName:req.body.authorName,
-    //     //         project_id:req.body.projectID,
-               
-    //     //     }
-    //     //     console.log('Line 110 ', issue);
-    //     //     let issues = await Issue.create(issue);
-    //     //     project.issue.push(issues);
-    //     //     project.save();
-    //     //     const ans = allLabelsWithId.map(label=>mongoose.Types.ObjectId(label));
-    //     //     console.log(`Line 118  ${allLabelsWithId}`);            
-    //     //     issues.labels.push(allLabelsWithId);
-    //     //     issues.save();
-    //     //     res.send(typeof allLabelsWithId + ' and is '+ allLabelsWithId + ' is array ' + Array.isArray(allLabelsWithId));
-    //     //     // const labelArray = allLabelsWithId.map(label => mongoose.Types.ObjectId(label));
-            
-            
-            
-    //     //     // const objectIds = allLabelsWithId.map(str => ObjectId(str));
-    //     //     // objectIds.forEach(labelId => {
-    //     //     //     let labelsID = mongoose.Types.ObjectId(labelId);
-    //     //     //     issues.labels.push(labelsID);
-    //     //     // });
-    //     //     // issues.save();
-    //     //     // return res.send('It worked');
-    //     //     // return res.redirect('/');
-    //     }   
-            
-    //     // return res.send('Error');
         
-    // } catch (error) {
-    //     console.log(error);
-    // }
+        console.log(error._message);
+        return res.redirect('back',{
+            message:error._message    
+        });
+    }
     
 }

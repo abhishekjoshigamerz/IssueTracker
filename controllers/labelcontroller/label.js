@@ -36,9 +36,6 @@ module.exports.deleteLabel = async function(req,res){
 //get suggestions by ajax call
 module.exports.getSuggestions = async function(req,res){
     try {
-        
-        // 
-        //await Label.find({name: { $regex: req.body.label, $options: 'i' }});
         let result = await Label.find({name: { $regex: req.body.label, $options: 'm'}});
 
         if(result){
@@ -48,9 +45,6 @@ module.exports.getSuggestions = async function(req,res){
                 message: 'No suggestions found'
             });
         }
-        
-
-        
     } catch (error) {
         console.log(`Error: ${error}`);
     }
