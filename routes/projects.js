@@ -8,7 +8,6 @@ router.get('/add-project',  projectcontroller.addproject);
 
 router.post('/create-project', validators.projectValidators() ,projectcontroller.createproject);
 
-
 router.get('/view-project/:id',projectcontroller.viewproject);
 
 module.exports = router;

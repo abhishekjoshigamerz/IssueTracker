@@ -3,7 +3,7 @@ const ObjectId = mongoose.Types.ObjectId;
 const Issue = require('../../models/issue/issue');
 const Project = require('../../models/project/project');
 const Label = require('../../models/label/label');
-
+const { validationResult } = require('express-validator');
 module.exports.issueform = async function(req,res){
     let project = await Project.findById(req.params.id);
 
@@ -73,6 +73,23 @@ module.exports.filterByAuthor = async function(req,res){
 
 module.exports.createissue = async function(req,res){
     try{
+        const errors = validationResult(req);
+        req.flash('error','');
+        if (!errors.isEmpty()) {
+            
+            let message = [];
+            
+            for(let i=0;i<errors.errors.length;i++){
+                console.log(errors.errors[i].msg);
+                message.push(`${errors.errors[i].msg}`);
+            }
+            
+            console.log(`message here is ${message}}`);
+            req.flash('error', message);
+
+            return res.redirect('back');
+        }
+
         //1. find the labels
         let labels  = req.body.labels;
        
@@ -117,10 +134,11 @@ module.exports.createissue = async function(req,res){
             await project.issue.push(issues);
             await project.save();
             
-            res.redirect('/');
+            return res.redirect('/');
 
         }
 
+       
     
 
     }catch(error){

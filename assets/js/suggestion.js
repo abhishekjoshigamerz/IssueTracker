@@ -6,7 +6,7 @@ $(document).ready(function() {
         let value = $(this).val();
         
         $.ajax({
-            url: 'http://localhost:8000/labels/get-suggestions',
+            url: '/labels/get-suggestions',
             type: 'POST',
             data: { 
                 label: value
