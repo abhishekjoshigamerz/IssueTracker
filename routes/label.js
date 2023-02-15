@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const validators  = require('../middlewares/validationChecker');
 
 const label = require('../controllers/labelcontroller/label');
 
 router.get('/all-labels', label.showlabels);
 
-router.post('/create-label',label.createLabel);
+router.post('/create-label',validators.labelValidators(),label.createLabel);
 
 router.get('/delete-label/:id',label.deleteLabel);
 

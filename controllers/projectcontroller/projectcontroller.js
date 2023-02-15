@@ -1,7 +1,7 @@
 const Project = require('../../models/project/project');
 const Issue = require('../../models/issue/issue');
 const Label = require('../../models/label/label');
-const { faker } = require('@faker-js/faker');
+const { validationResult } = require('express-validator');
 module.exports.addproject = function(req,res){
     
     return res.render('projectform',{
@@ -67,6 +67,22 @@ module.exports.getAllProjects = async function(req,res){
 
 module.exports.createproject =  async function(req,res){
     try {
+        req.flash('error','');
+        const errors = validationResult(req); 
+        if (!errors.isEmpty()) {
+            
+            let message = [];
+            
+            for(let i=0;i<errors.errors.length;i++){
+                console.log(errors.errors[i].msg);
+                message.push(`${errors.errors[i].msg}`);
+            }
+            
+            console.log(`message here is ${message}}`);
+            req.flash('error', message);
+
+            return res.redirect('back');
+        }
         const data = {
             name:req.body.name,
             description:req.body.description,
@@ -74,10 +90,20 @@ module.exports.createproject =  async function(req,res){
         }
         let post = await Project.create(data);   
         post.save();
+        req.flash('success','Project created successfully');
         return res.redirect('/project/get-all-projects/1');     
     } catch (error) {
-        req.flash('error',error);
-        console.log(`Error: ${error}`);
+        if(error.code == '11000'){
+            req.flash('error','Error: A project with same name already exists');
+            
+            return res.redirect('back');
+        }else{
+            req.flash('error',error);
+            console.log(`Error spotted, Error code is : ${error}`);
+            return res.redirect('back');
+        }
+        
+        
     }
    
 }

@@ -5,7 +5,9 @@ const port = 8000;
 const app = express();
 const db = require('./config/connection');
 const path = require('path');
-
+const session = require('express-session');
+const flash = require('connect-flash');
+const nMiddleWare  = require('./middlewares/notificationMiddleware');
 app.use(express.urlencoded());
 
 
@@ -13,8 +15,14 @@ app.use(express.urlencoded());
 app.use(expressLayouts);
 app.use(express.static('./assets/'));
 
-
-
+app.use(session({
+    secret:'geeksforgeeks',
+    saveUninitialized: true,
+    resave: true
+}));
+  
+app.use(flash());
+app.use(nMiddleWare.setFlash);
 app.set('layout extractStyles',true);
 // app.use(express.static('assets'));
 app.set('layout extractScripts',true);

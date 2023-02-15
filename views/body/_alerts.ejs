@@ -1,0 +1,14 @@
+<% if (alerts.error) { %>
+  <ul class="list-group">
+    <div class="alert alert-danger mt-2 mb-1">
+    <% alerts.error.forEach(function(msg) { %>
+      <li class="" style="list-style: none;"><%= msg %></li>
+    <% }); %>
+  </div>
+  </ul>
+  <% } %>
+  <% if (alerts.success) { %>
+    <% alerts.success.forEach(function(msg) { %>
+      <div class="alert alert-success"><%= msg %></div>
+    <% }); %>
+  <% } %>

@@ -1,7 +1,8 @@
        
        
  <div class="col-auto col-md-9 col-xl-10 bg-white d-md-block">
-    <form method="POST" action="/project/create-project">
+    <%- include('./_alerts.ejs') %>
+  <form method="POST" action="/project/create-project">
         <div class="mb-3 mt-5">
             <h3>Add Project</h3>
           <label for="projectTitle" class="form-label">Project title</label>
