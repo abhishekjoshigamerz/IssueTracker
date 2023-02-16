@@ -47,15 +47,7 @@ module.exports.createLabel = async function(req,res){
       
 };
 
-module.exports.deleteLabel = async function(req,res){
 
-    try {
-        await Label.deleteOne({_id:req.params.id});
-        return res.redirect('back');
-    } catch (error) {
-        console.log(`Error: ${error}`);
-    }
-}
 
 //get suggestions by ajax call
 module.exports.getSuggestions = async function(req,res){

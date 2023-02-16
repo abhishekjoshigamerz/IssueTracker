@@ -4,7 +4,7 @@
        <p> Labels </p>
       <% for(label of labels) { %>
         <div class="form-check">
-          <input class="form-check-input checkLabel" type="checkbox"  value="<%=label._id %>" id="flexCheckChecked-<%= label._id %>"  data-value="<%= project._id%>">
+          <input class="form-check-input checkLabel" type="checkbox"  value="<%=label._id %>" id="flexCheckChecked-<%= label._id %>"  data-value="<%= project._id%>" >
         <label class="form-check-label" for="flexCheckChecked">
           <%= label.name %>
         </label>
@@ -15,7 +15,7 @@
         <p> Authors </p>
         <div class="mb-3">
             <label for="authorName" class="form-label">Author Name</label>
-            <input type="text" class="form-control" name="name" id="authorName" placeholder="Author Name">
+            <input type="text" class="form-control" name="name" id="authorName" placeholder="Author Name" >
             <br />
            
           </div>
@@ -25,11 +25,11 @@
         
             <div class="mb-3">
                 <label for="authorTitle" class="form-label">Title</label>
-                <input type="text" name="title" class="form-control" id="issueTitle" placeholder="Author Title">
+                <input type="text" name="title" class="form-control" id="issueTitle" placeholder="Author Title" required>
             </div>
             <div class="mb-3">
                 <label for="issueDescription" class="form-label">Issue Description</label>
-                <textarea class="form-control" id="issueDescription" rows="5"></textarea>
+                <textarea class="form-control" id="issueDescription" rows="5" required></textarea>
             </div>
             <div class="mb-3">
               <button class="btn btn-primary" id="searchByTitleAndDesc"> Search </button>

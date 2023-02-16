@@ -1,27 +1,27 @@
-<div class="col-auto col-md-9 col-xl-10 bg-white d-md-block">
+<div class="col-auto col-md-9 col-xl-12 bg-white d-md-block">
   <%- include('./_alerts.ejs') %>
     <h3 class="mt-5 mb-3"><%= project.name %> </h3>
         <p class="mb-2">Add project issues here</p>
         <form method="POST" action="/issue/create-issue/">
             <div class="mb-3 mt-5">
               <label for="issueTitle" class="form-label">Add Issue Title</label>
-              <input type="text" class="form-control" name="name" id="issueTitle" aria-describedby="Add Issue title">
+              <input type="text" class="form-control" name="name" id="issueTitle" aria-describedby="Add Issue title" required>
               <div id="issueTitle" class="form-text">Add Issue title</div>
             </div>
-            <input type="hidden" name="projectID" value="<%= project._id %>">
+            <input type="hidden" name="projectID" value="<%= project._id %>" required>
             <div id="hiddenDiv">
               
             </div> 
             <div class="mb-3">
               <label for="issueDescription" class="form-label">Issue Description</label>
               
-                <textarea class="form-control" name="description" id="issueDescription" rows="7"></textarea>
+                <textarea class="form-control" name="description" id="issueDescription" rows="7" required></textarea>
             </div>
             <p id="showSelectedLabels">Selected Labels are : </p>
             <div class="input-group  mb-3 mt-5 suggestionSet">
               
                 <label for="issueLabel" class="form-label">Issue Label : &nbsp;</label>
-                <input type="text" name="issueLabel" class="form-control" id="issueLabel" aria-describedby="Add issue label name">
+                <input type="text" name="issueLabel" class="form-control" id="issueLabel" aria-describedby="Add issue label name" required>
                 <button class="btn btn-outline-secondary" type="button" id="buttonAddLabel">Add Label</button>
                 
             </div>
@@ -32,7 +32,7 @@
             <div id="issueLabel" class="form-text">Add project issue Label</div>
             <div class="mb-3 mt-5">
                 <label for="issueAuthor" class="form-label">Issue author</label>
-                <input type="text"  name="authorName" class="form-control" id="issueAuthor" aria-describedby="Add issue author name">
+                <input type="text"  name="authorName" class="form-control" id="issueAuthor" aria-describedby="Add issue author name" required>
                 <div id="issueAuthor" class="form-text">Add project issue authors Name</div>
               </div>
             <button type="submit" class="btn btn-primary">Add Issue</button>
