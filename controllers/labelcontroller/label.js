@@ -25,7 +25,6 @@ module.exports.createLabel = async function(req,res){
                 console.log(errors.errors[i].msg);
                 message += `${errors.errors[i].msg} `;
             }
-            console.log(`message here is ${message}}`);
             req.flash('error',message);
             return res.redirect('back');
         }
