@@ -16,7 +16,7 @@ app.use(expressLayouts);
 app.use(express.static('./assets/'));
 
 app.use(session({
-    secret:'geeksforgeeks',
+    secret:process.env.key,
     saveUninitialized: true,
     resave: true
 }));
