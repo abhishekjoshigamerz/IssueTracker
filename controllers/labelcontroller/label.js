@@ -2,6 +2,7 @@ const Label = require('../../models/label/label');
 
 const {  validationResult } = require('express-validator');
 
+//shows labels
 module.exports.showlabels = async function(req,res){
     const label = await Label.find({}).sort('-createdAt');
 
@@ -11,7 +12,7 @@ module.exports.showlabels = async function(req,res){
        
     });
 }
-
+//creates Labels
 module.exports.createLabel = async function(req,res){
     try{
         req.flash('error',''); //clearing the flash error

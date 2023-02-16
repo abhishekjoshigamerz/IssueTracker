@@ -4,6 +4,9 @@ const Issue = require('../../models/issue/issue');
 const Project = require('../../models/project/project');
 const Label = require('../../models/label/label');
 const { validationResult } = require('express-validator');
+
+
+//add issue form to add issues
 module.exports.issueform = async function(req,res){
     let project = await Project.findById(req.params.id);
 
@@ -71,6 +74,7 @@ module.exports.filterByAuthor = async function(req,res){
     }
 }
 
+//creates Issue
 module.exports.createissue = async function(req,res){
     try{
         const errors = validationResult(req);
@@ -130,7 +134,6 @@ module.exports.createissue = async function(req,res){
 
             
             await issues.save();
-            console.log(`LATEST NEW labs are ${newlabes}`);
             await project.issue.push(issues);
             await project.save();
             
@@ -138,12 +141,9 @@ module.exports.createissue = async function(req,res){
 
         }
 
-       
-    
-
     }catch(error){
         
-        console.log(error._message);
+        //returns error message back to the form
         return res.redirect('back',{
             message:error._message    
         });
