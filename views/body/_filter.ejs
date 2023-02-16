@@ -1,7 +1,8 @@
 <div class="col-md-3 mt-5">
     <h4>Filters</h4>
-    <div>
-       <p> Labels </p>
+    
+    <div class="mt-2">
+       <p> Filter By Label </p>
       <% for(label of labels) { %>
         <div class="form-check">
           <input class="form-check-input checkLabel" type="checkbox"  value="<%=label._id %>" id="flexCheckChecked-<%= label._id %>"  data-value="<%= project._id%>" >
@@ -11,21 +12,21 @@
         </div>
       <% } %>
     </div>
-    <div>
-        <p> Authors </p>
+    <div class="mt-5">
+        <p>Filter By Author </p>
         <div class="mb-3">
-            <label for="authorName" class="form-label">Author Name</label>
+          
             <input type="text" class="form-control" name="name" id="authorName" placeholder="Author Name" >
             <br />
            
           </div>
     </div>
-    <div>
-        <p>Search Box</p>
+    <div class="mt-2">
+        <p>Search By Title and Description</p>
         
             <div class="mb-3">
                 <label for="authorTitle" class="form-label">Title</label>
-                <input type="text" name="title" class="form-control" id="issueTitle" placeholder="Author Title" required>
+                <input type="text" name="title" class="form-control" id="issueTitle" placeholder="Issue Name" required>
             </div>
             <div class="mb-3">
                 <label for="issueDescription" class="form-label">Issue Description</label>
